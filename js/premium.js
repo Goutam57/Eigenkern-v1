@@ -1,0 +1,21 @@
+(()=>{const $=s=>[...document.querySelectorAll(s)];
+$('h2,.sub,.card,.way,.tile,.tut,.steps li,.callout,.tw,details,.note').forEach(e=>{e.classList.add('rv');e.style.setProperty('--d',([...e.parentNode.children].indexOf(e)%6)*.08+'s')});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);setTimeout(()=>x.target.classList.remove('rv'),1600)}}),{threshold:.1});
+$('.rv').forEach(e=>io.observe(e));document.body.classList.add('go');
+$('[data-to]').forEach(e=>{const a=+e.dataset.from,b=+e.dataset.to,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1800,1);e.textContent=Math.round(a+(b-a)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)});
+addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'},{passive:true});
+$('.card,.way').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')}))})();
+(()=>{const sw=document.querySelector('.strip .wrap');if(sw)sw.innerHTML+=sw.innerHTML;
+const dds=[...document.querySelectorAll('.dd')];dds.forEach(d=>d.firstElementChild.addEventListener('click',e=>{e.stopPropagation();const o=!d.classList.contains('open');dds.forEach(x=>{x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded',false)});d.classList.toggle('open',o);d.firstElementChild.setAttribute('aria-expanded',o)}));
+const close=()=>dds.forEach(x=>{x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded',false)});document.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();ap.hidden=true}});
+const a=document.getElementById('asst'),ap=document.getElementById('apanel');a.addEventListener('click',e=>{e.stopPropagation();ap.hidden=!ap.hidden;a.setAttribute('aria-expanded',!ap.hidden)});ap.addEventListener('click',()=>ap.hidden=true)})();
+(()=>{const $=s=>[...document.querySelectorAll(s)];
+const ms=$('.msgs .m');let mi=0;setInterval(()=>{ms[mi].classList.remove('on');mi=(mi+1)%ms.length;ms[mi].classList.add('on')},3200);
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('sm',scrollY>80),{passive:true});
+const tb=$('.tabs button'),pn=$('.pane');tb.forEach((b,i)=>b.addEventListener('click',()=>{tb.forEach((x,j)=>{x.classList.toggle('on',i===j);x.setAttribute('aria-selected',i===j)});pn.forEach((p,j)=>p.classList.toggle('on',i===j))}));
+const w=['Ihre Kanzlei','Ihre Praxis','Ihren Betrieb','Ihre Schule','Ihre Verwaltung'],r=document.getElementById('rot');let wi=0;setInterval(()=>{r.classList.add('out');setTimeout(()=>{wi=(wi+1)%w.length;r.textContent=w[wi];r.classList.remove('out')},400)},2600);
+const f=document.getElementById('cf');f.addEventListener('submit',e=>{e.preventDefault();if(!f.checkValidity()){f.reportValidity();return}document.getElementById('ok').hidden=false;f.reset()});
+const hr=document.querySelector('.hero');if(hr)for(let i=0;i<7;i++){const s=document.createElement('i');s.className='fsq';const z=30+Math.random()*90;s.style.cssText=`width:${z}px;height:${z}px;left:${Math.random()*95}%;top:${Math.random()*85}%;animation-delay:${-Math.random()*14}s;animation-duration:${12+Math.random()*10}s`;hr.appendChild(s)}
+$('.tile').forEach(t=>{t.addEventListener('mousemove',e=>{const b=t.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;t.style.transform=`perspective(600px) rotateX(${-y*12}deg) rotateY(${x*12}deg) translateY(-6px)`});t.addEventListener('mouseleave',()=>t.style.transform='')});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.2});$('.fcard,.cta3 a,.ft-trust div,.q').forEach(e=>io.observe(e))})();
+(()=>{const p=document.querySelector('.plan svg');if(p&&!matchMedia('(prefers-reduced-motion:reduce)').matches)addEventListener('scroll',()=>{if(scrollY<900)p.style.transform=`translateY(${scrollY*.09}px)`},{passive:true})})();
